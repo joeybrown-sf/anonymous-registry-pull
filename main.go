@@ -18,7 +18,9 @@ func main() {
 		client.WithAPIVersionNegotiation(),
 	)
 
-	rc, err := cli.ImagePull(context.Background(), ref, image.PullOptions{})
+	ctx := context.Background()
+
+	rc, err := cli.ImagePull(ctx, ref, image.PullOptions{})
 	defer func(rc io.ReadCloser) {
 		if rc != nil {
 			err := rc.Close()
@@ -39,5 +41,6 @@ func main() {
 	if _, err := io.Copy(io.Discard, rc); err != nil {
 		panic(err)
 	}
+
 	fmt.Println("Success!")
 }
