@@ -31,7 +31,6 @@ func main() {
 	}(rc)
 
 	if err != nil {
-		// if the error containers "docker login", print that out and end the program.
 		if strings.Contains(err.Error(), "docker login") {
 			fmt.Println(err.Error())
 			return
